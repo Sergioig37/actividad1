@@ -1,25 +1,74 @@
 var numero;
 var numeros = [];
 
-for(var i=1; i<=4; i++){
+function esEntero(cadena) {
 
-    numero = (prompt("Introduce un número"));
+    var esEntero = true;
 
-    if((parseInt)(numero)&&(numero>0)){
+    if (parseInt(cadena)) {
+        return esEntero;
+    }
+    else {
+        esEntero = false;
+        return esEntero;
+    }
+}
 
-        while((parseInt)(numero)&&(numero<=0)){
+function esPositivo(numero) {
 
-        }
+    var esPositivo = true;
+
+    if (numero > 0) {
+        return esPositivo;
+    }
+    else {
+        esPositivo = false;
+        return esPositivo;
+    }
+}
+
+function comprobacionNumeros(){
+
+    for(var i=1;i<=4;i++){
+
+    numero = prompt("Introduce un número");
+
+    if(esPositivo(numero)==true&&esEntero(numero)==true){
+        numeros.push(numero);
     }
     else{
-        alert("Número introducido erróneo, prueba otra vez");
-
-        while(!(parseInt)(numero)&&!(numero<=0)){
-            
-             numero = prompt("Introduce un número");
+        numero = prompt("Número erróneo, prueba otra vez");
+        while((esPositivo(numero)==false)||(esEntero(numero)==false)){
+            numero = prompt("Inténtalo de nuevo");
         }
-       
+        numeros.push(numero);
+    }
+ }
+ return numeros;
+}
+
+function ordenCreciente(numeros){
+
+    numeros = (numeros);
+    var enOrden = true;
+    var min = numeros[0];
+   
+
+    for(var i=0; i<numeros.length; i++){
+
+        if(numeros[i+1]<min){
+            enOrden = false;
+            break;
+        }
+        else{
+            min = numeros[i+1];
+        }
+
     }
 
+    return enOrden;
 }
+
+alert(ordenCreciente(comprobacionNumeros()));
+
 
