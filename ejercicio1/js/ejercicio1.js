@@ -26,13 +26,10 @@ function esPositivo(numero) {
     }
 }
 
-
 function sumatorio(numero) {
     var resultado = 0;
     for (let i = 0; i <= numero; i++) {
         resultado += i;
-
-    
     }   
     alert(resultado);
 }
@@ -42,10 +39,12 @@ if ((esPositivo(numero) == false) || (esEntero(numero) == false)) {
     while ((esPositivo(numero) == false) || (esEntero(numero) == false)) {
         var numero = prompt("El número introducido no es válido, prueba de nuevo");
     }
+    sumatorio(numero);
 }
 else{
     sumatorio(numero);
 }
+
 
 
 
