@@ -63,7 +63,6 @@ function ordenCreciente(numeros){
         else{
             min = numeros[i+1];
         }
-
     }
 
     return enOrden;
