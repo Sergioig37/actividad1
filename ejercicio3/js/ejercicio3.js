@@ -1,4 +1,4 @@
-var numero = prompt("Introduzca un número:");
+var numero = parseInt(prompt("Introduzca un número:"));
 
 const Maximo = 100;
 const Minimo = 1;
@@ -17,33 +17,42 @@ function esEntero(cadena) {
     }
 }
 
-function esPositivo(numero) {
-
-    var esPositivo = true;
-
-    if (numero > 0) {
-        return esPositivo;
-    }
-    else {
-        esPositivo = false;
-        return esPositivo;
-    }
-}
-
-
-
 function comprobarNumero(numero){
-    if(esPositivo(numero)!=true&&esEntero(numero)!=true){
-        while(esPositivo(numero)!=true&&esEntero(numero)!=true){
-            numero = prompt("Introduzca un número válido:");
+
+    if((esEntero(numero)==false||numero>100||numero<1)){
+        while(esEntero(numero)==false||numero>100||numero<1){
+            numero = parseInt(prompt("Introduzca un número válido:"));
         }
     }
     return numero;
-
 }
 
 function esDivisible(numero){
 
-    
+    var numerosDivisibles = [];
+    var numerosNoDivisibles = [];
 
+    for(var i=0; i<Divisores.length; i++){
+
+        var resultado = numero%Divisores[i];
+        if(resultado===0){
+            numerosDivisibles.push(Divisores[i]);
+        }
+        else{
+            numerosNoDivisibles.push(Divisores[i]);
+        }
+    }
+
+    if(numerosDivisibles.length===0){
+        alert(numero + " no es divisible entre ningúno de estos números:  " + numerosNoDivisibles);
+    }
+    else if(numerosDivisibles.length===4){
+        alert(numero + " es divisible entre todos estos números: " + numerosDivisibles);
+    }
+    else{
+        alert(numero + " es divisible entre " + numerosDivisibles);
+    }
+    
 }
+
+esDivisible(comprobarNumero(numero));
