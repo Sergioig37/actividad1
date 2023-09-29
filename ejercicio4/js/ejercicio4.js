@@ -1,7 +1,5 @@
 
-function validarOperador(){
-
-    var operacion = prompt("Inserta el signo de la operación que deseas realizar");
+function validarOperador(operacion){
 
     var operadoresValidos = ["+", "*", "/", "-", "FIN"];
     
@@ -12,43 +10,24 @@ function validarOperador(){
                     encontrado = true;
                     break;
                 }
-    }
-        
-    if(encontrado ===false){
-       
-        while(encontrado===false){
-            operacion = prompt("Inserta un signo de  operación válido");
-            for(var i=0; i<operadoresValidos.length; i++){
-                if(operadoresValidos[i]===operacion){
-                    encontrado = true;
-                    break;
-               }
-            }
-        }  
-    }
-    return operacion;
+    } 
+    return encontrado;
 }
 
-function divisionValida( ){
+function divisionValida( operando2){
 
-    var divisorNull = false;
+    var esValida = true;
 
     if(operando2==null){
         operando2 = prompt("El divisor no puede ser null");
-        divisorNull = true;
+        esValida = true;
     }
     
-    return operando2;
+    return esValida;
 }
 
 
 function hacerOperacion(cadena, operando1, operando2){
-
-
-    if(cadena==="/"){
-        operando2 = divisionValida(operando1, operando2);
-    }
-    
 
     var resultado;
 
@@ -76,28 +55,49 @@ function hacerOperacion(cadena, operando1, operando2){
 
 }
 
-
 function esEntero(numero) {
 
+    var entero = true;
+
     if (parseInt(numero)) {
-        return numero;
+        return entero;
     }
     else {
-
-        while(!parseInt(numero)){
-            numero = parseInt(prompt("Eso no era un número prueba otra vez"));
-        }
-        return numero;
+        entero = false;
+        return entero;
     }
 }
 
 
 
+
+
+
 var operando1 = parseInt(prompt("Inserta un número"));
- operando1 = esEntero(operando1);
+
+ if(esEntero(operando1)==false){
+
+    while(esEntero(operando1)==false){
+        operando1 = parseInt(prompt("Eso no era un número válido, prueba otra vez"));
+    }
+ }
+ 
 
 var operando2 = parseInt(prompt("Inserta otro número"));
-operando2 = esEntero(operando2);
 
-hacerOperacion( validarOperador(), operando1, operando2 );
+if(esEntero(operando2)==false){
+    while(esEntero(operando2)==false){
+        operando2 = parseInt(prompt("Eso no era un número válido, prueba otra vez"));
+    }
+ }
+
+var operacion = prompt("Inserta el signo de la operación que deseas realizar");
+
+if(validarOperador(operacion)==false){
+    while(validarOperador(operacion)==false){
+        operacion = prompt("Inserta un signo de operación válido");
+    }
+}
+
+hacerOperacion( operacion, operando1, operando2 );
 
