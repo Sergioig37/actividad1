@@ -1,9 +1,4 @@
-var numero = parseInt(prompt("Introduzca un número:"));
-
-const Maximo = 100;
-const Minimo = 1;
-const Divisores = [2, 3, 5, 10];
-
+//funciones
 function esEntero(cadena) {
 
     var esEntero = true;
@@ -19,42 +14,49 @@ function esEntero(cadena) {
 
 function comprobarNumero(numero){
 
-    if((esEntero(numero)==false||numero>100||numero<1)){
-      
+    var correcto = false;
+
+    if((esEntero(numero)==true||numero<=100||numero>=1)){
+        correcto = true;
     }
-    return numero;
+
+    return correcto;
 }
 
-function esDivisible(numero){
+function esDivisible(dividendo, divisor){
 
-    var numerosDivisibles = [];
-    var numerosNoDivisibles = [];
+    var divisible = false;
 
-    for(var i=0; i<Divisores.length; i++){
-
-        var resultado = numero%Divisores[i];
-        if(resultado===0){
-            numerosDivisibles.push(Divisores[i]);
-        }
-        else{
-            numerosNoDivisibles.push(Divisores[i]);
-        }
+    if(dividendo%divisor===0){
+        divisible = true;
     }
 
-    if(numerosDivisibles.length===0){
-        alert(numero + " no es divisible entre ningúno de estos números:  " + numerosNoDivisibles);
-    }
-    else if(numerosDivisibles.length===4){
-        alert(numero + " es divisible entre todos estos números: " + numerosDivisibles);
-    }
-    else{
-        alert(numero + " es divisible entre " + numerosDivisibles);
-    }
+    return divisible;
     
 }
 
+//código
+var numero = parseInt(prompt("Introduzca un número:"));
 
-  while(esEntero(numero)==false||numero>100||numero<1){
-            numero = parseInt(prompt("Introduzca un número válido:"));
-        }
-esDivisible(comprobarNumero(numero));
+const Divisores = [2, 3, 5, 10];
+var numerosDivisores = [];
+
+if(comprobarNumero(numero)==false){
+    alert("Numero no válido, introduzca otro número");
+    while(esEntero(numero)==false||numero>100||numero<1){
+        numero = parseInt(prompt("Introduzca un número válido:"));
+    }
+}
+
+for(var i=0;i<Divisores.length; i++){
+    if(esDivisible(numero, Divisores[i])==true){
+        numerosDivisores.push(Divisores[i]);
+    }
+}
+
+if(numerosDivisores.length>0){
+    alert(numero +" es divisible entre " + numerosDivisores);
+}
+else{
+    alert(numero +" no es divisible entre ningúno de los números");
+}
