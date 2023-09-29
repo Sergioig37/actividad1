@@ -27,6 +27,7 @@ function esPositivo(numero) {
 }
 
 function sumatorio(numero) {
+    
     var resultado = 0;
     for (let i = 0; i <= numero; i++) {
         resultado += i;

@@ -1,5 +1,13 @@
-var numero;
+
 var numeros = [];
+
+
+function recibirNumeros(){
+        var numero = prompt("Introduce un número");
+       
+        return numero;
+
+}
 
 function esEntero(cadena) {
 
@@ -27,32 +35,23 @@ function esPositivo(numero) {
     }
 }
 
-function comprobacionNumeros(){
 
-    for(var i=1;i<=4;i++){
+function comprobacionNumeros(numero){
 
-    numero = prompt("Introduce un número");
+    var correcto = false;
 
     if(esPositivo(numero)==true&&esEntero(numero)==true){
-        numeros.push(numero);
+       correcto = true;
     }
-    else{
-        numero = prompt("Número erróneo, prueba otra vez");
-        while((esPositivo(numero)==false)||(esEntero(numero)==false)){
-            numero = prompt("Inténtalo de nuevo");
-        }
-        numeros.push(numero);
-    }
- }
- return numeros;
+ 
+    return correcto;
+
 }
 
 function ordenCreciente(numeros){
 
-    numeros = (numeros);
     var enOrden = true;
     var min = numeros[0];
-   
 
     for(var i=0; i<numeros.length; i++){
 
@@ -68,6 +67,26 @@ function ordenCreciente(numeros){
     return enOrden;
 }
 
-alert(ordenCreciente(comprobacionNumeros()));
+
+for(var i=0; i<4; i++){
+    var numero = recibirNumeros();
+    if(comprobacionNumeros(numero)==false){
+        while(comprobacionNumeros(numero)==false){
+            alert("Número erróneo, pruebe otra vez");
+            numero = recibirNumeros();
+        }
+        numeros.push(numero);
+    }
+    else{
+        numeros.push(numero);
+    }
+}
+
+if(ordenCreciente(numeros)==true){
+    alert("Los números están en orden creciente");
+}
+else{
+    alert("Los números no están en orden creciente");
+}
 
 

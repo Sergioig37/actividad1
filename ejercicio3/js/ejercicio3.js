@@ -20,9 +20,7 @@ function esEntero(cadena) {
 function comprobarNumero(numero){
 
     if((esEntero(numero)==false||numero>100||numero<1)){
-        while(esEntero(numero)==false||numero>100||numero<1){
-            numero = parseInt(prompt("Introduzca un número válido:"));
-        }
+      
     }
     return numero;
 }
@@ -55,4 +53,8 @@ function esDivisible(numero){
     
 }
 
+
+  while(esEntero(numero)==false||numero>100||numero<1){
+            numero = parseInt(prompt("Introduzca un número válido:"));
+        }
 esDivisible(comprobarNumero(numero));
